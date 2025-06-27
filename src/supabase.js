@@ -44,5 +44,4 @@ export const testSupabaseConnection = async () => {
     return false
   }
 }
-
-export { supabase, testSupabaseConnection }
+export { supabase, testSupabaseConnection };
