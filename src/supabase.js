@@ -39,9 +39,9 @@ export const testSupabaseConnection = async () => {
     }
     console.log('Supabase connection successful')
     return true
-  } catch (error) {
+} catch (error) {
     console.error('Supabase connection test error:', error)
     return false
   }
 }
-export { supabase, testSupabaseConnection };
+export { supabase };
