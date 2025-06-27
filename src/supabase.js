@@ -1,6 +1,9 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from "@supabase/supabase-js";
+import React from "react";
+import Error from "@/components/ui/Error";
 
 // Get Supabase configuration from environment variables
+
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
 const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
@@ -27,6 +30,25 @@ try {
   console.error('Failed to create Supabase client:', error)
   throw new Error('Supabase client initialization failed')
 }
+
+// Test connection function
+const testSupabaseConnection = async () => {
+  try {
+    const { data, error } = await supabase.from('test').select('*').limit(1)
+    if (error) {
+      console.warn('Supabase connection test failed:', error.message)
+      return false
+    }
+    console.log('Supabase connection successful')
+    return true
+  } catch (error) {
+    console.warn('Supabase connection test error:', error.message)
+    return false
+  }
+}
+
+export { supabase, testSupabaseConnection }
+export default supabase
 
 export { supabase }
 
