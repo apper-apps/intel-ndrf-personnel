@@ -1,6 +1,4 @@
 import { createClient } from "@supabase/supabase-js";
-import React from "react";
-import Error from "@/components/ui/Error";
 
 // Get Supabase configuration from environment variables
 
@@ -31,27 +29,6 @@ try {
   throw new Error('Supabase client initialization failed')
 }
 
-// Test connection function
-const testSupabaseConnection = async () => {
-  try {
-    const { data, error } = await supabase.from('test').select('*').limit(1)
-    if (error) {
-      console.warn('Supabase connection test failed:', error.message)
-      return false
-    }
-    console.log('Supabase connection successful')
-    return true
-  } catch (error) {
-    console.warn('Supabase connection test error:', error.message)
-    return false
-  }
-}
-
-export { supabase, testSupabaseConnection }
-export default supabase
-
-export { supabase }
-
 // Export a function to test the connection
 export const testSupabaseConnection = async () => {
   try {
@@ -67,3 +44,5 @@ export const testSupabaseConnection = async () => {
     return false
   }
 }
+
+export { supabase, testSupabaseConnection }
